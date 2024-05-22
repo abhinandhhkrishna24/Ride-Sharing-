@@ -1,28 +1,35 @@
-# Ride Sharing API
+Ride Sharing API
 
-This API provides endpoints for user registration, login, ride management, and real-time ride tracking.
+Description:
+The Ride Sharing API is a Django-based RESTful web service designed to facilitate ride sharing between drivers and riders. It allows users to register, request rides, view ride details, and update ride statuses. Additionally, it provides real-time ride tracking and ride matching functionalities.
 
-## Endpoints
+Features:
+1. User API:
+   - Register: Allows users to create new accounts with unique usernames and passwords.
+   - Login: Provides authentication for registered users to access protected endpoints.
 
-### User Management
+2. Ride API:
+   - Create Ride Request: Allows users to request a ride by providing pickup and dropoff locations.
+   - View Ride Details: Enables users to view details of a specific ride, including its status, pickup and dropoff locations, and timestamps.
+   - List Rides: Displays a list of all available rides.
 
-- `POST /user/register/`: Register a new user.
-- `POST /user/login/`: Login with username and password.
+3. Ride Status Updates:
+   - Update Ride Status: Allows users to update the status of a ride, such as marking it as started, completed, or cancelled.
 
-### Ride Management
+4. Ride Tracking 
+   - Simulated Real-time Tracking: Implements a simulation of real-time ride tracking by periodically updating the ride's current location.
 
-- `POST /ride/create/`: Create a new ride request.
-- `GET /ride/<ride_id>/`: Retrieve details of a specific ride by its ID.
-- `GET /ride/lists/`: List all rides.
-- `PUT /ride/<ride_id>/update/`: Update the status of a ride.
-- `GET /ride/available/`: Find and match available rides with drivers.
-- `PUT /ride/accept/<ride_id>/`: Accept a ride request by the driver.
+5. Ride Matching 
+   - Ride Matching Algorithm: Implements an algorithm to match ride requests with available drivers based on proximity or other factors.
+   - Accept Ride Request: Provides an API endpoint for drivers to accept ride requests, facilitating the ride matching process.
 
-## Authentication
+Endpoints:
+- User Registration: POST /user/register/
+- User Login: POST /user/login/
+- Create Ride Request: POST /ride/create/
+- View Ride Details: GET /ride/<int:pk>/
+- List Rides: GET /ride/lists/
+- Update Ride Status: PUT /ride/<int:pk>/update/
+- Real-time Ride Tracking: Simulated real-time tracking implemented internally.
+- Ride Matching: Matching algorithm applied internally; no specific endpoint.
 
-- User registration and login endpoints require no authentication.
-- All other endpoints require authentication via JWT token. Include the token in the Authorization header as follows: `Authorization: Bearer <token>`.
-
-## Pagination
-
-- Ride lists endpoint (`/ride/lists/`) supports pagination with a default page size of 10 rides per page.
